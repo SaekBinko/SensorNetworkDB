@@ -29,10 +29,10 @@ if(isset($_POST["backup"])&&$_POST["backup"]==="Utwórz backup")
         $result=exec('C:\xampp\mysql\bin\mysqldump.exe -h'.trim(DB_SERVER).
             ' -u'.trim(DB_USERNAME).' '.DB_NAME.' > backup\\'.$filename,$output);
     else
-        $result=exec('mysqldump -h'.trim(DB_SERVER).
-            ' -u'.trim(DB_USERNAME).' '.DB_NAME.' > backup/'.$filename,$output);
+        $result=exec('/usr/bin/mysqldump -h'.trim(DB_SERVER).
+            ' -u'.trim(DB_USERNAME).' -p'.trim(DB_PASSWORD).' '.DB_NAME.' > backup/'.$filename,$output,$retval);
 
-    if(empty($output)) $_SESSION["backup_success"]=true;
+    if(empty($retval)) $_SESSION["backup_success"]=true;
     else $_SESSION["backup_success"]=false;
 
     header('location: interfejsGlowny.phtml');

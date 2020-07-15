@@ -130,6 +130,8 @@ try
 
                 //create password
                 $password = trim(bin2hex(random_bytes(5)));
+		// pokaż wygenerowane hasło
+		echo($password);
                 mailTo($email, 'Temporary password', $password);
                 $dbLink->beginTransaction();
 
